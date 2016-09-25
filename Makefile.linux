@@ -1,0 +1,18 @@
+#Used for building I2C controller. Tested on Raspberry Pi3 running Jessie 4.4.10.
+#Connect I2C to GPIO02 (SDA1, I2C) and GPIO3 (SCL1, I2C)
+
+LIB_DEV = ../../lib_device_control
+LIB_HOST = ../../lib_device_control/host
+
+LIB_SRC = $(addprefix -x c $(LIB_HOST)/,device_access_xscope.c device_access_usb.c device_access_i2c_rpi.c util.c)
+
+SRC = main.cpp
+
+FLAGS = -g -Wall -I $(LIB_DEV)/api -I ../lib_xvsm_support/api -I $(LIB_HOST) -I $(LIB_DEV)/src -I /home/aiwabdn/work/emotech/workspace/app_usb_aud_mic_array/src/extensions -I /home/aiwabdn/work/emotech/workspace/lib_xvsm_support/api -I /home/aiwabdn/work/emotech/workspace/lib_voice/api
+
+all:
+	mkdir -p bin
+	gcc -DUSE_I2C=1 -DRPI=1 $(FLAGS) -o bin/xvsm_i2c $(SRC) $(LIB_SRC)
+	gcc -DUSE_USB=1 $(FLAGS) -o bin/xvsm_usb $(SRC) $(LIB_SRC) -lusb-1.0
+clean:
+	rm -rf bin
