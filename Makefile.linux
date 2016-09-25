@@ -8,7 +8,7 @@ LIB_SRC = $(addprefix -x c $(LIB_HOST)/,device_access_xscope.c device_access_usb
 
 SRC = main.cpp
 
-FLAGS = -g -Wall -I $(LIB_DEV)/api -I ../lib_xvsm_support/api -I $(LIB_HOST) -I $(LIB_DEV)/src -I /home/aiwabdn/work/emotech/workspace/app_usb_aud_mic_array/src/extensions -I /home/aiwabdn/work/emotech/workspace/lib_xvsm_support/api -I /home/aiwabdn/work/emotech/workspace/lib_voice/api
+FLAGS = -g -Wall -I $(LIB_DEV)/api -I ../lib_xvsm_support/api -I $(LIB_HOST) -I $(LIB_DEV)/src -I /home/aiwabdn/workspace/app_usb_aud_mic_array/src/extensions -I /home/aiwabdn/workspace/lib_xvsm_support/api -I /home/aiwabdn/workspace/lib_voice/api
 
 all:
 	mkdir -p bin
